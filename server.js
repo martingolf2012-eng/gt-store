@@ -7,7 +7,7 @@ app.use(express.static('public'));
 
 const API_KEY = 'pk_live_Ef4IYcFG2dDU71UxgD6oMU10pCjNpwGm';
 
-// 1. Ruta para verificar jugadores de Free Fire
+// Ruta para verificar jugadores de Free Fire con Volsever
 app.get('/api/check-player', async (req, res) => {
     const playerId = req.query.id;
     if (!playerId) {
@@ -26,7 +26,7 @@ app.get('/api/check-player', async (req, res) => {
     }
 });
 
-// 2. Ruta para verificar descuentos / cupones
+// Ruta para verificar descuentos / cupones
 app.get('/api/check-discounts', async (req, res) => {
     try {
         const response = await fetch('https://gate.volsever.com/api/check-discounts', {

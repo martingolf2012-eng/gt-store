@@ -350,7 +350,71 @@
             indexAnuncio = (indexAnuncio + 1) % anunciosNube.length;
             document.getElementById('anuncioNube').innerText = anunciosNube[indexAnuncio];
         }, 5000);
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GT.STORE - Plataforma Oficial de Recargas</title>
+    <style>
+        body { background-color: #0f0f0f; color: white; font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 20px; }
+        h1 { color: #ffcc00; }
+        .store-container { max-width: 600px; margin: 0 auto; background: #1a1a1a; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        input { padding: 10px; width: 60%; border-radius: 5px; border: none; margin-right: 10px; }
+        button { padding: 10px 20px; background: #ffcc00; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
+        button:hover { background: #e6b800; }
+        #resultadoVerificacion { margin-top: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
 
+    <div class="store-container">
+        <h1>⚡ GT.STORE ⚡</h1>
+        <p>Plataforma Oficial de Recargas y Servicios</p>
+
+        <!-- SECCIÓN DE VERIFICACIÓN DE ID DE FREE FIRE -->
+        <div style="background: #111; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h3>Verificar tu ID de Free Fire</h3>
+            <input type="text" id="playerId" placeholder="Ingresa tu ID (ej: 686631178)">
+            <button onclick="verificarJugador()">Verificar</button>
+            <p id="resultadoVerificacion"></p>
+        </div>
+    </div>
+
+    <script>
+        async function verificarJugador() {
+            const id = document.getElementById('playerId').value;
+            const resultado = document.getElementById('resultadoVerificacion');
+            
+            if (!id) {
+                resultado.style.color = "red";
+                resultado.innerText = "Por favor, ingresa un ID válido.";
+                return;
+            }
+
+            resultado.style.color = "yellow";
+            resultado.innerText = "Verificando con Volsever...";
+
+            try {
+                const res = await fetch(`/api/check-player?id=${id}`);
+                const data = await res.json();
+
+                if (data.status && data.data) {
+                    resultado.style.color = "#00ffcc";
+                    resultado.innerText = `¡ID Encontrado! Jugador: ${data.data.username} (Región: ${data.data.region})`;
+                } else {
+                    resultado.style.color = "red";
+                    resultado.innerText = "ID no encontrado o inválido.";
+                }
+            } catch (error) {
+                resultado.style.color = "red";
+                resultado.innerText = "Error al conectar con el servidor.";
+            }
+        }
+    </script>
+
+</body>
+</html>
         let cuponesDB = [{ codigo: "GT10", descuento: 10 }, { codigo: "VIP20", descuento: 20 }];
         let revendedoresDB = [{ user: "MD_Shop", pass: "admin123", saldo: 50000 }, { user: "tinchostore", pass: "1234", saldo: 25000 }];
 
