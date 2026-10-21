@@ -65,7 +65,6 @@
 <body>
 
     <div class="container">
-        <!-- Nube superior con Estado -->
         <div class="server-status">
             <div style="display: flex; align-items: center; gap: 8px;">
                 <span id="dotEstado" class="pulse-dot"></span>
@@ -89,7 +88,6 @@
             </div>
         </header>
 
-        <!-- AVISO DE MANTENIMIENTO -->
         <div id="avisoMantenimiento" style="display:none; background: #ff5555; color: #fff; text-align: center; padding: 20px; border-radius: 10px; font-weight: bold; font-size: 1.2rem; margin-bottom: 20px;">
             🔴 ¡ATENCIÓN! La tienda se encuentra en MANTENIMIENTO temporalmente.
         </div>
@@ -111,7 +109,7 @@
             </div>
 
             <!-- 💎 FREE FIRE INFINITOS (RECARGA AUTOMÁTICA -> MANUS AI) -->
-            <div class="section-title">💎 Free Fire - Infinitos (Recarga Automática / Panel Manus AI)</div>
+            <div class="section-title">💎 Free Fire - Infinitos (Recarga Automática)</div>
             <div class="grid">
                 <div class="card"><h3>💎 100 Diamantes + 10 Bono</h3><div class="price">$1.190 ARS</div><button class="btn btn-auto" onclick="registrarPedidoManus('100 Diamantes + 10 Bono (Infinitos)', 1190)">Recarga Automática</button></div>
                 <div class="card"><h3>💎 310 Diamantes + 31 Bono</h3><div class="price">$3.670 ARS</div><button class="btn btn-auto" onclick="registrarPedidoManus('310 Diamantes + 31 Bono (Infinitos)', 3670)">Recarga Automática</button></div>
@@ -124,12 +122,12 @@
             <!-- 🎮 FREE FIRE DIAMANTES LIMITADOS (GOGETAPO CON STOCK) -->
             <div class="section-title">🎮 Free Fire - Diamantes Limitados (1 por ID)</div>
             <div class="grid">
-                <div class="card"><h3>110 💎</h3><div class="price">$860 ARS</div><button class="btn btn-auto" onclick="comprarItem('110 Diamantes Limitados', 860)">Comprar Ahora</button></div>
-                <div class="card"><h3>341 💎</h3><div class="price">$2.650 ARS</div><button class="btn btn-auto" onclick="comprarItem('341 Diamantes Limitados', 2650)">Comprar Ahora</button></div>
-                <div class="card"><h3>572 💎</h3><div class="price">$4.350 ARS</div><button class="btn btn-auto" onclick="comprarItem('572 Diamantes Limitados', 4350)">Comprar Ahora</button></div>
-                <div class="card"><h3>1166 💎</h3><div class="price">$8.420 ARS</div><button class="btn btn-auto" onclick="comprarItem('1166 Diamantes Limitados', 8420)">Comprar Ahora</button></div>
-                <div class="card"><h3>2398 💎</h3><div class="price">$16.350 ARS</div><button class="btn btn-auto" onclick="comprarItem('2398 Diamantes Limitados', 16350)">Comprar Ahora</button></div>
-                <div class="card"><h3>6160 💎</h3><div class="price">$42.300 ARS</div><button class="btn btn-auto" onclick="comprarItem('6160 Diamantes Limitados', 42300)">Comprar Ahora</button></div>
+                <div class="card"><h3>110 Diamantes</h3><div class="price">$860 ARS</div><button class="btn btn-auto" onclick="comprarItem('110 Diamantes Limitados', 860)">Comprar Ahora</button></div>
+                <div class="card"><h3>341 Diamantes</h3><div class="price">$2.650 ARS</div><button class="btn btn-auto" onclick="comprarItem('341 Diamantes Limitados', 2650)">Comprar Ahora</button></div>
+                <div class="card"><h3>572 Diamantes</h3><div class="price">$4.350 ARS</div><button class="btn btn-auto" onclick="comprarItem('572 Diamantes Limitados', 4350)">Comprar Ahora</button></div>
+                <div class="card"><h3>1166 Diamantes</h3><div class="price">$8.420 ARS</div><button class="btn btn-auto" onclick="comprarItem('1166 Diamantes Limitados', 8420)">Comprar Ahora</button></div>
+                <div class="card"><h3>2398 Diamantes</h3><div class="price">$16.350 ARS</div><button class="btn btn-auto" onclick="comprarItem('2398 Diamantes Limitados', 16350)">Comprar Ahora</button></div>
+                <div class="card"><h3>6160 Diamantes</h3><div class="price">$42.300 ARS</div><button class="btn btn-auto" onclick="comprarItem('6160 Diamantes Limitados', 42300)">Comprar Ahora</button></div>
             </div>
 
             <!-- 🍿 PELÍCULAS Y SERIES -->
@@ -164,8 +162,10 @@
             <div class="grid">
                 <div class="card"><h3>▶️ YouTube Premium Individual</h3><div class="price">$1.700 ARS</div><button class="btn btn-auto" onclick="comprarItem('YouTube Premium Individual', 1700)">Comprar</button></div>
                 <div class="card"><h3>👪 YouTube Premium Familiar</h3><div class="price">$2.500 ARS</div><button class="btn btn-auto" onclick="comprarItem('YouTube Premium Familiar', 2500)">Comprar</button></div>
-                <div class="card"><h3>🌊 Tidal Individual / Familiar</h3><div class="price">$1.500 / $1.900 ARS</div><button class="btn btn-auto" onclick="comprarItem('Tidal', 1700)">Comprar</button></div>
-                <div class="card"><h3>🎶 Deezer Individual / Familiar</h3><div class="price">$1.500 / $2.000 ARS</div><button class="btn btn-auto" onclick="comprarItem('Deezer', 1750)">Comprar</button></div>
+                <div class="card"><h3>🌊 Tidal Individual</h3><div class="price">$1.500 ARS</div><button class="btn btn-auto" onclick="comprarItem('Tidal Individual', 1500)">Comprar</button></div>
+                <div class="card"><h3>🌊 Tidal Familiar</h3><div class="price">$1.900 ARS</div><button class="btn btn-auto" onclick="comprarItem('Tidal Familiar', 1900)">Comprar</button></div>
+                <div class="card"><h3>🎶 Deezer Individual</h3><div class="price">$1.500 ARS</div><button class="btn btn-auto" onclick="comprarItem('Deezer Individual', 1500)">Comprar</button></div>
+                <div class="card"><h3>🎶 Deezer Familiar</h3><div class="price">$2.000 ARS</div><button class="btn btn-auto" onclick="comprarItem('Deezer Familiar', 2000)">Comprar</button></div>
                 <div class="card"><h3>🎨 Canva Pro 1 Mes</h3><div class="price">$1.900 ARS</div><button class="btn btn-auto" onclick="comprarItem('Canva Pro 1 Mes', 1900)">Comprar</button></div>
                 <div class="card"><h3>📚 Scribd 1 Mes</h3><div class="price">$1.600 ARS</div><button class="btn btn-auto" onclick="comprarItem('Scribd 1 Mes', 1600)">Comprar</button></div>
                 <div class="card"><h3>📖 Nextory 1 Mes</h3><div class="price">$1.600 ARS</div><button class="btn btn-auto" onclick="comprarItem('Nextory 1 Mes', 1600)">Comprar</button></div>
@@ -174,11 +174,11 @@
             </div>
         </div>
 
-        <!-- 💼 SECCIÓN REVENDEDORES -->
+        <!-- 💼 SECCIÓN REVENDEDORES (CON TODO EL CATÁLOGO COMPLETO) -->
         <div id="seccionRevendedor" style="display: none;">
             <div id="loginRevendedor" style="max-width: 400px; margin: 40px auto; background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--accent-yellow); text-align: center;">
                 <h2 style="color: var(--accent-yellow); margin-bottom: 15px;">🔐 Acceso Revendedores</h2>
-                <p style="color: #8b949e; font-size: 0.85rem; margin-bottom: 15px;">Recuerda usar el botón de WhatsApp acordado para pedidos mayoristas.</p>
+                <p style="color: #8b949e; font-size: 0.85rem; margin-bottom: 15px;">Usa el botón de WhatsApp acordado para pedidos mayoristas.</p>
                 <form onsubmit="intentarLoginRev(event)">
                     <div class="form-group"><label>Usuario:</label><input type="text" id="userRev" required placeholder="Tu usuario"></div>
                     <div class="form-group"><label>Contraseña:</label><input type="password" id="passRev" required placeholder="Tu contraseña"></div>
@@ -213,6 +213,23 @@
                     <div class="card"><h3>10.950 - 1100 💎</h3><div class="price">$10.950 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA INFINITO] 1100 💎', 10950)">Pedir por WSP</button></div>
                     <div class="card"><h3>21.950 - 2398 💎</h3><div class="price">$21.950 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA INFINITO] 2398 💎', 21950)">Pedir por WSP</button></div>
                     <div class="card"><h3>54.900 - 6160 💎</h3><div class="price">$54.900 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA INFINITO] 6160 💎', 54900)">Pedir por WSP</button></div>
+                </div>
+
+                <div class="section-title">🍿 Películas y Series (Mayorista)</div>
+                <div class="grid">
+                    <div class="card"><h3>🔴 Netflix Perfil Extra</h3><div class="price">$6.500 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA] Netflix Perfil Extra', 6500)">Pedir por WSP</button></div>
+                    <div class="card"><h3>🟣 HBO Max 1 Perfil</h3><div class="price">$1.500 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA] HBO Max 1 Perfil', 1500)">Pedir por WSP</button></div>
+                    <div class="card"><h3>🟣 HBO Max Cuenta Completa</h3><div class="price">$3.800 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA] HBO Max Cuenta Completa', 3800)">Pedir por WSP</button></div>
+                    <div class="card"><h3>🔵 Prime Video 1 Pantalla</h3><div class="price">$1.600 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA] Prime Video 1 Pantalla', 1600)">Pedir por WSP</button></div>
+                    <div class="card"><h3>🏰 Disney Premium 1 Disp.</h3><div class="price">$2.800 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA] Disney Premium', 2800)">Pedir por WSP</button></div>
+                </div>
+
+                <div class="section-title">📺 IPTV y Música (Mayorista)</div>
+                <div class="grid">
+                    <div class="card"><h3>💧 Flujo TV 1 Mes</h3><div class="price">$5.800 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA] Flujo TV 1 Mes', 5800)">Pedir por WSP</button></div>
+                    <div class="card"><h3>📡 TV Online Plus 1 Mes</h3><div class="price">$5.800 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA] TV Online Plus', 5800)">Pedir por WSP</button></div>
+                    <div class="card"><h3>▶️ YouTube Premium Individual</h3><div class="price">$1.700 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA] YouTube Premium', 1700)">Pedir por WSP</button></div>
+                    <div class="card"><h3>🎨 Canva Pro 1 Mes</h3><div class="price">$1.900 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA] Canva Pro', 1900)">Pedir por WSP</button></div>
                 </div>
             </div>
         </div>
