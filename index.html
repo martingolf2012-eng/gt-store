@@ -14,9 +14,8 @@
             --text-color: #f0f6fc;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-color); padding: 20px; padding-bottom: 60px; }
+        body { background-color: var(--bg-color); color: var(--text-color); padding: 20px; padding-bottom: 65px; }
         
-        /* Barra superior "Nube" con anuncios rotativos */
         .server-status { display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); padding: 10px 18px; border-radius: 8px; border: 1px solid var(--border-color); font-size: 0.85rem; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
         .pulse-dot { width: 10px; height: 10px; background-color: #3fb950; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #3fb950; animation: pulse 1.5s infinite; }
         .pulse-dot.off { background-color: #ff5555; box-shadow: 0 0 8px #ff5555; animation: none; }
@@ -26,7 +25,6 @@
         header h1 { color: var(--accent-yellow); font-size: 2.5rem; text-shadow: 0 0 15px rgba(255, 204, 0, 0.4); }
         header p { color: var(--accent-blue); margin-top: 5px; }
 
-        /* Buscador global */
         .search-container { max-width: 500px; margin: 15px auto 25px; }
         .search-container input { width: 100%; padding: 12px 18px; background: var(--card-bg); border: 1px solid var(--accent-blue); border-radius: 30px; color: #fff; font-size: 1rem; outline: none; box-shadow: 0 0 10px rgba(0,242,254,0.2); }
 
@@ -35,10 +33,10 @@
         .tab-btn.active { background: var(--accent-blue); color: var(--bg-color); border-color: var(--accent-blue); box-shadow: 0 0 10px rgba(0, 242, 254, 0.5); }
         .tab-btn.admin { border-color: var(--accent-yellow); color: var(--accent-yellow); }
 
-        .container { max-width: 950px; margin: 0 auto; }
+        .container { max-width: 1000px; margin: 0 auto; }
         .section-title { font-size: 1.3rem; color: var(--accent-blue); margin: 35px 0 15px; border-bottom: 2px solid var(--border-color); padding-bottom: 5px; }
         
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; }
         .card { background: linear-gradient(145deg, #101726, #161f33); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; transition: 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
         .card:hover { border-color: var(--accent-yellow); transform: translateY(-3px); box-shadow: 0 0 15px rgba(255, 204, 0, 0.3); }
         .card h3 { color: #fff; margin-bottom: 10px; font-size: 1.1rem; }
@@ -48,24 +46,13 @@
         .btn-auto { background: linear-gradient(135deg, var(--accent-yellow), #ff9900); color: var(--bg-color); }
         .btn-auto:hover { opacity: 0.9; box-shadow: 0 0 10px var(--accent-yellow); }
 
-        .coupon-box { margin-bottom: 25px; background: var(--card-bg); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color); display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-        .coupon-box input { padding: 10px; background: var(--bg-color); border: 1px solid var(--border-color); color: #fff; border-radius: 6px; flex: 1; }
-
-        /* Verificador Volsever Box */
         .volsever-box { background: linear-gradient(135deg, #162238, #101726); border: 1px solid var(--accent-blue); padding: 20px; border-radius: 12px; margin-bottom: 25px; text-align: center; box-shadow: 0 4px 15px rgba(0,242,254,0.15); }
         .volsever-box input { padding: 11px; width: 60%; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 6px; color: white; margin-right: 8px; font-size: 0.95rem; }
         #resultadoVerificacion, #resultadoDescuento { margin-top: 12px; font-weight: bold; font-size: 0.95rem; }
 
-        /* Menú del Panel Admin Pro */
         .admin-menu { display: flex; gap: 5px; margin-bottom: 25px; flex-wrap: wrap; }
         .admin-menu-btn { background: var(--bg-color); border: 1px solid var(--border-color); color: #fff; padding: 7px 10px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.75rem; }
         .admin-menu-btn.active-admin { background: var(--accent-yellow); color: var(--bg-color); border-color: var(--accent-yellow); }
-
-        /* FAQs */
-        .faq-container, .tournaments-container { margin-top: 40px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
-        .faq-item { border-bottom: 1px solid var(--border-color); padding: 12px 0; }
-        .faq-question { color: var(--accent-yellow); font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; }
-        .faq-answer { color: #8b949e; font-size: 0.9rem; margin-top: 8px; display: none; }
 
         .form-group { margin-bottom: 15px; text-align: left; }
         .form-group label { display: block; font-size: 0.9rem; margin-bottom: 5px; color: #fff; }
@@ -78,21 +65,21 @@
 <body>
 
     <div class="container">
-        <!-- Nube superior con Estado y Anuncios rotativos -->
+        <!-- Nube superior con Estado -->
         <div class="server-status">
             <div style="display: flex; align-items: center; gap: 8px;">
                 <span id="dotEstado" class="pulse-dot"></span>
                 <span id="textoEstadoServidor" style="color: #3fb950; font-weight: bold;">Plataforma Operativa 100%</span>
             </div>
-            <div id="anuncioNube" style="color: var(--accent-yellow); font-weight: bold;">⚡ ¡Promo activa! Sincronizado con Volsever ⚡</div>
+            <div style="color: var(--accent-yellow); font-weight: bold;">⚡ Conectado con API Volsever ⚡</div>
         </div>
 
         <header>
-            <h1 style="color: var(--accent-yellow);">⚡ GT.STORE ⚡</h1>
-            <p>Plataforma Oficial de Recargas y Servicios con API Volsever</p>
+            <h1>⚡ GT.STORE ⚡</h1>
+            <p>Plataforma Oficial de Recargas y Servicios Digitales</p>
             
             <div class="search-container">
-                <input type="text" id="inputBuscador" placeholder="🔍 ¿Qué producto buscas hoy? (Ej: Diamantes, Oro, Streaming)..." oninput="filtrarProductos()">
+                <input type="text" id="inputBuscador" placeholder="🔍 ¿Qué producto buscas hoy? (Ej: Diamantes, Netflix, HBO)..." oninput="filtrarProductos()">
             </div>
 
             <div class="nav-tabs">
@@ -107,126 +94,91 @@
             🔴 ¡ATENCIÓN! La tienda se encuentra en MANTENIMIENTO temporalmente.
         </div>
 
-        <!-- SECCIÓN CLIENTE -->
+        <!-- 🛒 SECCIÓN CLIENTE -->
         <div id="seccionCliente">
-            <!-- VERIFICADOR VOLSEVER (NUEVO) -->
             <div class="volsever-box">
                 <h3 style="color: var(--accent-yellow); margin-bottom: 8px;">🎮 Verificador de ID (Volsever)</h3>
                 <p style="color: #8b949e; font-size: 0.85rem; margin-bottom: 12px;">Comprueba tu cuenta de Free Fire en tiempo real antes de comprar.</p>
-                <input type="text" id="playerId" placeholder="Ingresa tu ID de Free Fire (Ej: 686631178)">
+                <input type="text" id="playerId" placeholder="Ingresa tu ID (Ej: 686631178)">
                 <button type="button" class="btn btn-auto" style="width: auto; padding: 11px 20px;" onclick="verificarJugadorVolsever()">Verificar ID</button>
                 <p id="resultadoVerificacion"></p>
             </div>
 
-            <!-- SISTEMA DE CUPONES Y DESCUENTOS VOLSEVER -->
-            <div class="coupon-box">
-                <input type="text" id="inputCupon" placeholder="¿Tienes un cupón o deseas chequear descuentos? (Ej: GT10)">
+            <div class="volsever-box" style="border-color: var(--accent-yellow); margin-bottom: 30px;">
+                <h3 style="color: var(--accent-yellow); margin-bottom: 8px;">🏷️ Descuentos y Cupones Activos</h3>
                 <button type="button" class="btn btn-auto" style="width: auto; padding: 10px 20px;" onclick="verificarDescuentosVolsever()">Consultar Descuentos API</button>
-                <span id="mensajeCupon" style="color: #3fb950; font-weight: bold; display:none;"></span>
-            </div>
-            <p id="resultadoDescuento"></p>
-
-            <div class="section-title">💎 Free Fire - Diamantes & Packs (Catálogo Masivo)</div>
-            <div class="grid" id="gridStockCliente">
-                <div class="card">
-                    <h3>💎 Free Fire - 100 Diamantes</h3>
-                    <div class="price">$1.200 ARS</div>
-                    <button class="btn btn-auto" onclick="comprarItem('100 Diamantes Free Fire', 1200)">Comprar Ahora</button>
-                </div>
-                <div class="card">
-                    <h3>💎 Free Fire - 310 Diamantes</h3>
-                    <div class="price">$3.500 ARS</div>
-                    <button class="btn btn-auto" onclick="comprarItem('310 Diamantes Free Fire', 3500)">Comprar Ahora</button>
-                </div>
-                <div class="card">
-                    <h3>💎 Free Fire - 520 Diamantes</h3>
-                    <div class="price">$5.800 ARS</div>
-                    <button class="btn btn-auto" onclick="comprarItem('520 Diamantes Free Fire', 5800)">Comprar Ahora</button>
-                </div>
-                <div class="card">
-                    <h3>💎 Free Fire - 1060 Diamantes</h3>
-                    <div class="price">$11.200 ARS</div>
-                    <button class="btn btn-auto" onclick="comprarItem('1060 Diamantes Free Fire', 11200)">Comprar Ahora</button>
-                </div>
-                <div class="card">
-                    <h3>💎 Free Fire - 2180 Diamantes</h3>
-                    <div class="price">$22.000 ARS</div>
-                    <button class="btn btn-auto" onclick="comprarItem('2180 Diamantes Free Fire', 22000)">Comprar Ahora</button>
-                </div>
-                <div class="card">
-                    <h3>💎 Free Fire - 5600 Diamantes</h3>
-                    <div class="price">$54.000 ARS</div>
-                    <button class="btn btn-auto" onclick="comprarItem('5600 Diamantes Free Fire', 54000)">Comprar Ahora</button>
-                </div>
+                <p id="resultadoDescuento"></p>
             </div>
 
-            <div class="section-title">📦 Pases, Blood Strike y Más Juegos</div>
-            <div class="grid" id="gridInfinitoCliente">
-                <div class="card">
-                    <h3>🎫 Booyah Pass Free Fire</h3>
-                    <div class="price">$3.800 ARS</div>
-                    <button class="btn btn-auto" onclick="comprarItem('Booyah Pass Free Fire', 3800)">Comprar Ahora</button>
-                </div>
-                <div class="card">
-                    <h3>⚡ Blood Strike - 100 Oro</h3>
-                    <div class="price">$950 ARS</div>
-                    <button class="btn btn-auto" onclick="comprarItem('Blood Strike 100 Oro', 950)">Comprar Ahora</button>
-                </div>
-                <div class="card">
-                    <h3>⚡ Blood Strike - Strike Pass</h3>
-                    <div class="price">$3.200 ARS</div>
-                    <button class="btn btn-auto" onclick="comprarItem('Blood Strike Pass', 3200)">Comprar Ahora</button>
-                </div>
-                <div class="card">
-                    <h3>⚽ FC Mobile - 100 FC Points</h3>
-                    <div class="price">$1.500 ARS</div>
-                    <button class="btn btn-auto" onclick="comprarItem('FC Mobile 100 Points', 1500)">Comprar Ahora</button>
-                </div>
-                <div class="card">
-                    <h3>🤖 Roblox - 400 Robux</h3>
-                    <div class="price">$4.500 ARS</div>
-                    <button class="btn btn-auto" onclick="comprarItem('Roblox 400 Robux', 4500)">Comprar Ahora</button>
-                </div>
+            <!-- 💎 FREE FIRE INFINITOS (RECARGA AUTOMÁTICA -> MANUS AI) -->
+            <div class="section-title">💎 Free Fire - Infinitos (Recarga Automática / Panel Manus AI)</div>
+            <div class="grid">
+                <div class="card"><h3>💎 100 Diamantes + 10 Bono</h3><div class="price">$1.190 ARS</div><button class="btn btn-auto" onclick="registrarPedidoManus('100 Diamantes + 10 Bono (Infinitos)', 1190)">Recarga Automática</button></div>
+                <div class="card"><h3>💎 310 Diamantes + 31 Bono</h3><div class="price">$3.670 ARS</div><button class="btn btn-auto" onclick="registrarPedidoManus('310 Diamantes + 31 Bono (Infinitos)', 3670)">Recarga Automática</button></div>
+                <div class="card"><h3>💎 520 Diamantes + 52 Bono</h3><div class="price">$6.050 ARS</div><button class="btn btn-auto" onclick="registrarPedidoManus('520 Diamantes + 52 Bono (Infinitos)', 6050)">Recarga Automática</button></div>
+                <div class="card"><h3>💎 1060 Diamantes + 106 Bono</h3><div class="price">$11.000 ARS</div><button class="btn btn-auto" onclick="registrarPedidoManus('1060 Diamantes + 106 Bono (Infinitos)', 11000)">Recarga Automática</button></div>
+                <div class="card"><h3>💎 2160 Diamantes + 218 Bono</h3><div class="price">$21.850 ARS</div><button class="btn btn-auto" onclick="registrarPedidoManus('2160 Diamantes + 218 Bono (Infinitos)', 21850)">Recarga Automática</button></div>
+                <div class="card"><h3>💎 5600 Diamantes + 560 Bono</h3><div class="price">$55.300 ARS</div><button class="btn btn-auto" onclick="registrarPedidoManus('5600 Diamantes + 560 Bono (Infinitos)', 55300)">Recarga Automática</button></div>
             </div>
 
-            <div class="section-title">🎬 Streaming & Licencias de Software</div>
-            <div class="grid" id="gridExtrasCliente">
-                <div class="card">
-                    <h3>🎬 Netflix (1 Mes - Pantalla)</h3>
-                    <div class="price">$2.800 ARS</div>
-                    <button class="btn btn-auto" onclick="comprarItem('Netflix 1 Mes Pantalla', 2800)">Comprar Ahora</button>
-                </div>
-                <div class="card">
-                    <h3>🎬 Max / HBO (1 Mes Completa)</h3>
-                    <div class="price">$3.500 ARS</div>
-                    <button class="btn btn-auto" onclick="comprarItem('Max 1 Mes Completa', 3500)">Comprar Ahora</button>
-                </div>
-                <div class="card">
-                    <h3>💻 ChatGPT Plus / Accesos IA</h3>
-                    <div class="price">$5.000 ARS</div>
-                    <button class="btn btn-auto" onclick="comprarItem('ChatGPT Plus', 5000)">Comprar Ahora</button>
-                </div>
+            <!-- 🎮 FREE FIRE DIAMANTES LIMITADOS (GOGETAPO CON STOCK) -->
+            <div class="section-title">🎮 Free Fire - Diamantes Limitados (1 por ID)</div>
+            <div class="grid">
+                <div class="card"><h3>110 💎</h3><div class="price">$860 ARS</div><button class="btn btn-auto" onclick="comprarItem('110 Diamantes Limitados', 860)">Comprar Ahora</button></div>
+                <div class="card"><h3>341 💎</h3><div class="price">$2.650 ARS</div><button class="btn btn-auto" onclick="comprarItem('341 Diamantes Limitados', 2650)">Comprar Ahora</button></div>
+                <div class="card"><h3>572 💎</h3><div class="price">$4.350 ARS</div><button class="btn btn-auto" onclick="comprarItem('572 Diamantes Limitados', 4350)">Comprar Ahora</button></div>
+                <div class="card"><h3>1166 💎</h3><div class="price">$8.420 ARS</div><button class="btn btn-auto" onclick="comprarItem('1166 Diamantes Limitados', 8420)">Comprar Ahora</button></div>
+                <div class="card"><h3>2398 💎</h3><div class="price">$16.350 ARS</div><button class="btn btn-auto" onclick="comprarItem('2398 Diamantes Limitados', 16350)">Comprar Ahora</button></div>
+                <div class="card"><h3>6160 💎</h3><div class="price">$42.300 ARS</div><button class="btn btn-auto" onclick="comprarItem('6160 Diamantes Limitados', 42300)">Comprar Ahora</button></div>
             </div>
 
-            <div class="tournaments-container">
-                <h3 style="color: var(--accent-yellow); margin-bottom: 10px;">🏆 Copa Xpansion Free Fire #15</h3>
-                <p style="color: #8b949e; font-size: 0.9rem; margin-bottom: 15px;">¡Anota a tu escuadra en nuestro próximo torneo custom y gana premios en diamantes!</p>
-                <a href="https://wa.me/5491178205943?text=Hola%20GT.STORE,%20quiero%20inscribir%20a%20mi%20escuadra%20al%20torneo" target="_blank" class="btn btn-auto" style="text-align: center; display: block;">Inscribir Equipo al Torneo</a>
+            <!-- 🍿 PELÍCULAS Y SERIES -->
+            <div class="section-title">🍿 Películas y Series</div>
+            <div class="grid">
+                <div class="card"><h3>🔴 Netflix Perfil Extra</h3><div class="price">$6.500 ARS</div><button class="btn btn-auto" onclick="comprarItem('Netflix Perfil Extra', 6500)">Comprar</button></div>
+                <div class="card"><h3>🟣 HBO Max 1 Perfil</h3><div class="price">$1.500 ARS</div><button class="btn btn-auto" onclick="comprarItem('HBO Max 1 Perfil', 1500)">Comprar</button></div>
+                <div class="card"><h3>🟣 HBO Max Cuenta Completa</h3><div class="price">$3.800 ARS</div><button class="btn btn-auto" onclick="comprarItem('HBO Max Cuenta Completa', 3800)">Comprar</button></div>
+                <div class="card"><h3>🔵 Prime Video 1 Pantalla (1 mes)</h3><div class="price">$1.600 ARS</div><button class="btn btn-auto" onclick="comprarItem('Prime Video 1 Pantalla', 1600)">Comprar</button></div>
+                <div class="card"><h3>🔵 Prime Video 2 Pantallas (1 mes)</h3><div class="price">$2.500 ARS</div><button class="btn btn-auto" onclick="comprarItem('Prime Video 2 Pantallas', 2500)">Comprar</button></div>
+                <div class="card"><h3>🔵 Prime Video Cuenta Completa</h3><div class="price">$3.800 ARS</div><button class="btn btn-auto" onclick="comprarItem('Prime Video Cuenta Completa', 3800)">Comprar</button></div>
+                <div class="card"><h3>🏰 Disney Premium 1 Dispositivo</h3><div class="price">$2.800 ARS</div><button class="btn btn-auto" onclick="comprarItem('Disney Premium 1 Dispositivo', 2800)">Comprar</button></div>
+                <div class="card"><h3>💚 Disney+ Hulu</h3><div class="price">$1.800 ARS</div><button class="btn btn-auto" onclick="comprarItem('Disney+ Hulu', 1800)">Comprar</button></div>
+                <div class="card"><h3>🏔️ Paramount+ 1 Pantalla</h3><div class="price">$2.400 ARS</div><button class="btn btn-auto" onclick="comprarItem('Paramount+ 1 Pantalla', 2400)">Comprar</button></div>
+                <div class="card"><h3>🏔️ Paramount+ Cuenta Completa</h3><div class="price">$4.400 ARS</div><button class="btn btn-auto" onclick="comprarItem('Paramount+ Cuenta Completa', 4400)">Comprar</button></div>
+                <div class="card"><h3>🧡 Vix Premium 1 Perfil</h3><div class="price">$1.500 ARS</div><button class="btn btn-auto" onclick="comprarItem('Vix Premium 1 Perfil', 1500)">Comprar</button></div>
+                <div class="card"><h3>🧡 Vix Premium Cuenta Completa</h3><div class="price">$2.800 ARS</div><button class="btn btn-auto" onclick="comprarItem('Vix Premium Cuenta Completa', 2800)">Comprar</button></div>
             </div>
 
-            <div class="faq-container">
-                <h3 style="color: var(--accent-yellow); margin-bottom: 15px;">❓ Preguntas Frecuentes (FAQ)</h3>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">¿Cuánto tarda en acreditarse mi recarga? <span>▼</span></div>
-                    <div class="faq-answer">Las recargas y pedidos se procesan de inmediato mediante validación automática y contacto por WhatsApp.</div>
-                </div>
+            <!-- 📺 IPTV Y TV EN VIVO -->
+            <div class="section-title">📺 IPTV y TV en Vivo</div>
+            <div class="grid">
+                <div class="card"><h3>💧 Flujo TV 1 Mes (3 disp)</h3><div class="price">$5.800 ARS</div><button class="btn btn-auto" onclick="comprarItem('Flujo TV 1 Mes', 5800)">Comprar</button></div>
+                <div class="card"><h3>💧 Flujo TV 3 Meses (3 disp)</h3><div class="price">$13.900 ARS</div><button class="btn btn-auto" onclick="comprarItem('Flujo TV 3 Meses', 13900)">Comprar</button></div>
+                <div class="card"><h3>📡 TV Online Plus 1 Mes</h3><div class="price">$5.800 ARS</div><button class="btn btn-auto" onclick="comprarItem('TV Online Plus 1 Mes', 5800)">Comprar</button></div>
+                <div class="card"><h3>⚡ Power Signals 1 Dispositivo</h3><div class="price">$3.500 ARS</div><button class="btn btn-auto" onclick="comprarItem('Power Signals 1 Dispositivo', 3500)">Comprar</button></div>
+                <div class="card"><h3>⚡ Power Signals 2 Dispositivos</h3><div class="price">$4.800 ARS</div><button class="btn btn-auto" onclick="comprarItem('Power Signals 2 Dispositivos', 4800)">Comprar</button></div>
+            </div>
+
+            <!-- 🎵 MÚSICA Y EXTRAS -->
+            <div class="section-title">🎵 Música y Extras</div>
+            <div class="grid">
+                <div class="card"><h3>▶️ YouTube Premium Individual</h3><div class="price">$1.700 ARS</div><button class="btn btn-auto" onclick="comprarItem('YouTube Premium Individual', 1700)">Comprar</button></div>
+                <div class="card"><h3>👪 YouTube Premium Familiar</h3><div class="price">$2.500 ARS</div><button class="btn btn-auto" onclick="comprarItem('YouTube Premium Familiar', 2500)">Comprar</button></div>
+                <div class="card"><h3>🌊 Tidal Individual / Familiar</h3><div class="price">$1.500 / $1.900 ARS</div><button class="btn btn-auto" onclick="comprarItem('Tidal', 1700)">Comprar</button></div>
+                <div class="card"><h3>🎶 Deezer Individual / Familiar</h3><div class="price">$1.500 / $2.000 ARS</div><button class="btn btn-auto" onclick="comprarItem('Deezer', 1750)">Comprar</button></div>
+                <div class="card"><h3>🎨 Canva Pro 1 Mes</h3><div class="price">$1.900 ARS</div><button class="btn btn-auto" onclick="comprarItem('Canva Pro 1 Mes', 1900)">Comprar</button></div>
+                <div class="card"><h3>📚 Scribd 1 Mes</h3><div class="price">$1.600 ARS</div><button class="btn btn-auto" onclick="comprarItem('Scribd 1 Mes', 1600)">Comprar</button></div>
+                <div class="card"><h3>📖 Nextory 1 Mes</h3><div class="price">$1.600 ARS</div><button class="btn btn-auto" onclick="comprarItem('Nextory 1 Mes', 1600)">Comprar</button></div>
+                <div class="card"><h3>🎮 Club de Fortnite</h3><div class="price">$4.900 ARS</div><button class="btn btn-auto" onclick="comprarItem('Club de Fortnite', 4900)">Comprar</button></div>
+                <div class="card"><h3>🔞 Brazzers Premium Anual</h3><div class="price">$2.000 ARS</div><button class="btn btn-auto" onclick="comprarItem('Brazzers Premium Anual', 2000)">Comprar</button></div>
             </div>
         </div>
 
-        <!-- SECCIÓN REVENDEDORES -->
+        <!-- 💼 SECCIÓN REVENDEDORES -->
         <div id="seccionRevendedor" style="display: none;">
             <div id="loginRevendedor" style="max-width: 400px; margin: 40px auto; background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--accent-yellow); text-align: center;">
                 <h2 style="color: var(--accent-yellow); margin-bottom: 15px;">🔐 Acceso Revendedores</h2>
+                <p style="color: #8b949e; font-size: 0.85rem; margin-bottom: 15px;">Recuerda usar el botón de WhatsApp acordado para pedidos mayoristas.</p>
                 <form onsubmit="intentarLoginRev(event)">
                     <div class="form-group"><label>Usuario:</label><input type="text" id="userRev" required placeholder="Tu usuario"></div>
                     <div class="form-group"><label>Contraseña:</label><input type="password" id="passRev" required placeholder="Tu contraseña"></div>
@@ -238,22 +190,35 @@
                 <div style="background: linear-gradient(135deg, #1f2d4a, #101726); border: 1px solid var(--accent-yellow); padding: 20px; border-radius: 12px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
                     <div>
                         <h2 style="color: var(--accent-yellow); margin-bottom: 5px;">🌟 Bienvenido, Revendedor</h2>
-                        <p style="color: #c9d1d9;">Saldo disponible: <strong id="saldoRevendedor" style="color: #3fb950; font-size: 1.2rem;">$0 ARS</strong></p>
+                        <p style="color: #c9d1d9;">Saldo disponible: <strong id="saldoRevendedor" style="color: #3fb950; font-size: 1.2rem;">$15.000 ARS</strong></p>
                     </div>
                     <button class="tab-btn" onclick="cerrarSesionRev()" style="border-color: #ff5555; color: #ff5555;">Cerrar Sesión</button>
                 </div>
-                <div class="section-title">💎 Free Fire - Con Stock (Mayorista)</div>
-                <div class="grid" id="gridStockRev"></div>
-                <div class="section-title">💎 Free Fire - Infinitos (Mayorista / Con Saldo)</div>
-                <div class="grid" id="gridInfinitoRev"></div>
-                <div class="section-title">📦 Pases y Tarjetas (Mayorista)</div>
-                <div class="grid" id="gridExtrasRev"></div>
+
+                <div class="section-title">🇦🇷 Precios GOGETAPO (Con Stock Mayorista)</div>
+                <div class="grid">
+                    <div class="card"><h3>1100 - 110 💎</h3><div class="price">$1.100 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA] 110 💎 Gogetapo', 1100)">Pedir por WSP</button></div>
+                    <div class="card"><h3>3100 - 341 💎</h3><div class="price">$3.100 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA] 341 💎 Gogetapo', 3100)">Pedir por WSP</button></div>
+                    <div class="card"><h3>4900 - 572 💎</h3><div class="price">$4.900 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA] 572 💎 Gogetapo', 4900)">Pedir por WSP</button></div>
+                    <div class="card"><h3>9000 - 1100 💎</h3><div class="price">$9.000 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA] 1100 💎 Gogetapo', 9000)">Pedir por WSP</button></div>
+                    <div class="card"><h3>16500 - 2398 💎</h3><div class="price">$16.500 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA] 2398 💎 Gogetapo', 16500)">Pedir por WSP</button></div>
+                    <div class="card"><h3>40500 - 6160 💎</h3><div class="price">$40.500 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA] 6160 💎 Gogetapo', 40500)">Pedir por WSP</button></div>
+                </div>
+
+                <div class="section-title">🇦🇷 Infinitos (Mayorista)</div>
+                <div class="grid">
+                    <div class="card"><h3>1.200 - 110 💎</h3><div class="price">$1.200 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA INFINITO] 110 💎', 1200)">Pedir por WSP</button></div>
+                    <div class="card"><h3>3.820 - 341 💎</h3><div class="price">$3.820 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA INFINITO] 341 💎', 3820)">Pedir por WSP</button></div>
+                    <div class="card"><h3>6.000 - 572 💎</h3><div class="price">$6.000 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA INFINITO] 572 💎', 6000)">Pedir por WSP</button></div>
+                    <div class="card"><h3>10.950 - 1100 💎</h3><div class="price">$10.950 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA INFINITO] 1100 💎', 10950)">Pedir por WSP</button></div>
+                    <div class="card"><h3>21.950 - 2398 💎</h3><div class="price">$21.950 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA INFINITO] 2398 💎', 21950)">Pedir por WSP</button></div>
+                    <div class="card"><h3>54.900 - 6160 💎</h3><div class="price">$54.900 ARS</div><button class="btn btn-auto" onclick="comprarItem('[MAYORISTA INFINITO] 6160 💎', 54900)">Pedir por WSP</button></div>
+                </div>
             </div>
         </div>
 
-        <!-- SECCIÓN ADMIN PRO CON LOGIN Tyg / Naty1989 -->
+        <!-- ⚙️ SECCIÓN ADMIN PRO (Tyg / Naty1989) -->
         <div id="seccionAdm" class="admin-panel">
-            <!-- LOGIN DE ADMIN -->
             <div id="loginAdminBox" style="max-width: 400px; margin: 40px auto; background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--accent-yellow); text-align: center;">
                 <h2 style="color: var(--accent-yellow); margin-bottom: 15px;">⚙️ Login Administrador</h2>
                 <form onsubmit="intentarLoginAdmin(event)">
@@ -263,83 +228,41 @@
                 </form>
             </div>
 
-            <!-- CONTENIDO DEL PANEL ADMIN -->
             <div id="contenidoAdminPro" style="display: none;">
                 <div class="admin-menu">
                     <button class="admin-menu-btn active-admin" id="m1" onclick="abrirAdminMenu('resumen')">📊 Resumen</button>
-                    <button class="admin-menu-btn" id="m2" onclick="abrirAdminMenu('manus')">🤖 Panel Manus (24/7)</button>
-                    <button class="admin-menu-btn" id="m3" onclick="abrirAdminMenu('precios')">💲 Precios</button>
-                    <button class="admin-menu-btn" id="m4" onclick="abrirAdminMenu('validador')">🔍 Validar</button>
-                    <button class="admin-menu-btn" id="m5" onclick="abrirAdminMenu('crear')">➕ Crear Rev</button>
-                    <button class="admin-menu-btn" id="m6" onclick="abrirAdminMenu('saldos')">💳 Saldo</button>
-                    <button class="admin-menu-btn" id="m7" onclick="abrirAdminMenu('cupones')">🎟️ Cupones</button>
-                    <button class="admin-menu-btn" id="m8" onclick="abrirAdminMenu('estado')">🔌 ON/OFF</button>
+                    <button class="admin-menu-btn" id="m2" onclick="abrirAdminMenu('manus')">🤖 Panel Manus AI (24/7)</button>
+                    <button class="admin-menu-btn" id="m3" onclick="abrirAdminMenu('estado')">🔌 ON/OFF</button>
                 </div>
 
                 <!-- 1. RESUMEN -->
                 <div id="adminResumen" class="card" style="padding: 25px; text-align: left;">
                     <h2 style="color: var(--accent-yellow); margin-bottom: 15px;">📊 Resumen General</h2>
-                    <h3 style="color: var(--accent-blue); font-size: 1.5rem;" id="contadorPedidosTotal">0 Pedidos Totales</h3>
+                    <h3 style="color: var(--accent-blue); font-size: 1.5rem;" id="contadorPedidosTotal">0 Recargas Automáticas Registradas</h3>
                 </div>
 
-                <!-- 2. PANEL MANUS (24/7) -->
+                <!-- 2. PANEL MANUS AI -->
                 <div id="adminManus" class="card" style="padding: 25px; text-align: left; display: none; border-color: var(--accent-blue);">
-                    <h2 style="color: var(--accent-blue); margin-bottom: 5px;">🤖 Panel de Monitoreo Manus (24/7)</h2>
-                    <p style="color: #8b949e; font-size: 0.85rem; margin-bottom: 15px;">Vista limpia para supervisión de pedidos.</p>
+                    <h2 style="color: var(--accent-blue); margin-bottom: 5px;">🤖 Panel Manus AI (Recargas Automáticas)</h2>
+                    <p style="color: #8b949e; font-size: 0.85rem; margin-bottom: 15px;">Aquí llegan en tiempo real los pedidos automáticos de diamantes infinitos solicitados por los clientes.</p>
                     <div style="overflow-x: auto;">
                         <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
                             <thead>
                                 <tr style="border-bottom: 2px solid var(--border-color); color: #8b949e;">
-                                    <th style="padding: 8px;">Código</th>
+                                    <th style="padding: 8px;">Hora</th>
                                     <th style="padding: 8px;">Producto</th>
-                                    <th style="padding: 8px;">ID de Juego</th>
-                                    <th style="padding: 8px;">Estado</th>
+                                    <th style="padding: 8px;">Precio</th>
+                                    <th style="padding: 8px;">Estado Manus</th>
                                 </tr>
                             </thead>
                             <tbody id="tablaManusPedidos">
-                                <tr><td colspan="4" style="padding: 15px; text-align: center; color: #8b949e;">Sin pedidos pendientes.</td></tr>
+                                <tr><td colspan="4" style="padding: 15px; text-align: center; color: #8b949e;">Sin recargas automáticas pendientes.</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- 3. PRECIOS -->
-                <div id="adminPrecios" class="card" style="padding: 25px; text-align: left; display: none;">
-                    <h2 style="color: var(--accent-yellow); margin-bottom: 10px;">💲 Modificador de Precios</h2>
-                    <p style="color: #8b949e; font-size: 0.85rem;">Sistema sincronizado con catálogo general.</p>
-                </div>
-
-                <!-- 4. VALIDADOR -->
-                <div id="adminValidador" class="card" style="padding: 25px; text-align: left; display: none;">
-                    <h2 style="color: var(--accent-blue); margin-bottom: 10px;">🔍 Validador de Código</h2>
-                    <div class="form-group"><label>Código:</label><input type="text" id="inputBuscarCodigo" placeholder="Ej: 482910"></div>
-                    <button type="button" class="btn btn-auto" onclick="alert('Sistema de validación activo.')">Verificar</button>
-                </div>
-
-                <!-- 5. CREAR REVENDEDOR -->
-                <div id="adminCrear" class="card" style="padding: 25px; text-align: left; display: none;">
-                    <h2 style="color: var(--accent-yellow); margin-bottom: 15px;">➕ Crear Revendedor</h2>
-                    <form onsubmit="event.preventDefault(); alert('Revendedor registrado con éxito.');">
-                        <div class="form-group"><label>Usuario:</label><input type="text" required></div>
-                        <div class="form-group"><label>Contraseña:</label><input type="text" required></div>
-                        <div class="form-group"><label>Saldo Inicial:</label><input type="number" required></div>
-                        <button type="submit" class="btn btn-auto">Crear</button>
-                    </form>
-                </div>
-
-                <!-- 6. SALDOS -->
-                <div id="adminSaldos" class="card" style="padding: 25px; text-align: left; display: none;">
-                    <h2 style="color: var(--accent-yellow); margin-bottom: 15px;">💳 Gestión de Saldos</h2>
-                    <p style="color: #8b949e;">Asignación de créditos a revendedores activa.</p>
-                </div>
-
-                <!-- 7. CUPONES -->
-                <div id="adminCupones" class="card" style="padding: 25px; text-align: left; display: none;">
-                    <h2 style="color: var(--accent-yellow); margin-bottom: 15px;">🎟️ Administración de Cupones</h2>
-                    <p style="color: #8b949e;">Cupones activos: GT10, VIP20.</p>
-                </div>
-
-                <!-- 8. ON/OFF -->
+                <!-- 3. ON/OFF -->
                 <div id="adminEstado" class="card" style="padding: 25px; text-align: left; display: none;">
                     <h2 style="color: #ff5555; margin-bottom: 15px;">🔌 Control de Estado de Tienda</h2>
                     <button class="btn" style="background: #ff5555; color: #fff;" onclick="toggleMantenimiento()">Alternar Mantenimiento</button>
@@ -352,7 +275,8 @@
     <a href="https://wa.me/5491178205943?text=Hola%20GT.STORE,%20vengo%20de%20la%20web" target="_blank" class="whatsapp-float">💬</a>
 
     <script>
-        // Funciones de navegación de solapas principales
+        let pedidosInfinitos = [];
+
         function cambiarTab(tab) {
             document.getElementById('seccionCliente').style.display = (tab === 'cliente') ? 'block' : 'none';
             document.getElementById('seccionRevendedor').style.display = (tab === 'revendedor') ? 'block' : 'none';
@@ -363,9 +287,8 @@
             document.getElementById('btnAdm').classList.toggle('active', tab === 'adm');
         }
 
-        // Navegación del Panel Admin Pro
         function abrirAdminMenu(menu) {
-            const menus = ['resumen', 'manus', 'precios', 'validador', 'crear', 'saldos', 'cupones', 'estado'];
+            const menus = ['resumen', 'manus', 'estado'];
             menus.forEach((m, index) => {
                 const elem = document.getElementById('admin' + m.charAt(0).toUpperCase() + m.slice(1));
                 const btn = document.getElementById('m' + (index + 1));
@@ -374,7 +297,26 @@
             });
         }
 
-        // Integración de Volsever: Verificar ID de jugador en tiempo real
+        function registrarPedidoManus(producto, precio) {
+            const hora = new Date().toLocaleTimeString();
+            pedidosInfinitos.push({ hora, producto, precio });
+            
+            const tbody = document.getElementById('tablaManusPedidos');
+            tbody.innerHTML = pedidosInfinitos.map(p => `
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                    <td style="padding: 8px;">${p.hora}</td>
+                    <td style="padding: 8px; color: var(--accent-yellow);">${p.producto}</td>
+                    <td style="padding: 8px; color: #3fb950;">$${p.precio} ARS</td>
+                    <td style="padding: 8px;"><span style="background: #3fb950; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">Enviado a Manus AI</span></td>
+                </tr>
+            `).join('');
+
+            document.getElementById('contadorPedidosTotal').innerText = `${pedidosInfinitos.length} Recargas Automáticas Totales`;
+
+            const mensaje = encodeURIComponent(`Hola GT.STORE, quiero realizar una recarga automática de: *${producto}* por *$${precio} ARS*. ¡Vengo directo de la web con sistema Manus!`);
+            window.open(`https://wa.me/5491178205943?text=${mensaje}`, '_blank');
+        }
+
         async function verificarJugadorVolsever() {
             const id = document.getElementById('playerId').value.trim();
             const resultado = document.getElementById('resultadoVerificacion');
@@ -405,7 +347,6 @@
             }
         }
 
-        // Integración de Volsever: Verificar Descuentos
         async function verificarDescuentosVolsever() {
             const resultado = document.getElementById('resultadoDescuento');
             resultado.style.color = "var(--accent-yellow)";
@@ -428,7 +369,6 @@
             }
         }
 
-        // Login de Admin (Tyg / Naty1989)
         function intentarLoginAdmin(e) {
             e.preventDefault();
             const u = document.getElementById('userAdminInput').value;
@@ -441,12 +381,10 @@
             }
         }
 
-        // Login de Revendedor
         function intentarLoginRev(e) {
             e.preventDefault();
             document.getElementById('loginRevendedor').style.display = 'none';
             document.getElementById('contenidoRevendedor').style.display = 'block';
-            document.getElementById('saldoRevendedor').innerText = '$15.000 ARS';
         }
 
         function cerrarSesionRev() {
@@ -454,13 +392,11 @@
             document.getElementById('contenidoRevendedor').style.display = 'none';
         }
 
-        // Función de compra rápida por WhatsApp
         function comprarItem(producto, precio) {
             const mensaje = encodeURIComponent(`Hola GT.STORE, quiero comprar: *${producto}* por un valor de *$${precio} ARS*. ¿Me pasas los datos para abonar?`);
             window.open(`https://wa.me/5491178205943?text=${mensaje}`, '_blank');
         }
 
-        // Buscador global de productos
         function filtrarProductos() {
             const query = document.getElementById('inputBuscador').value.toLowerCase();
             const cards = document.querySelectorAll('.card');
@@ -470,13 +406,6 @@
             });
         }
 
-        // Toggle FAQ
-        function toggleFaq(elem) {
-            const answer = elem.nextElementSibling;
-            answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
-        }
-
-        // Estado de Mantenimiento
         let mantenimientoActivo = false;
         function toggleMantenimiento() {
             mantenimientoActivo = !mantenimientoActivo;
