@@ -3,397 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GT.STORE - Plataforma Oficial</title>
+    <title>GT.STORE - Catálogo Oficial y Recargas</title>
     <style>
-        :root {
-            --bg-color: #090d16;
-            --card-bg: #101726;
-            --border-color: #1f2d4a;
-            --accent-blue: #00f2fe;
-            --accent-yellow: #ffcc00;
-            --text-color: #f0f6fc;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-color); padding: 20px; padding-bottom: 60px; }
-        
-        /* Barra superior "Nube" con anuncios rotativos */
-        .server-status { display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); padding: 10px 18px; border-radius: 8px; border: 1px solid var(--border-color); font-size: 0.85rem; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
-        .pulse-dot { width: 10px; height: 10px; background-color: #3fb950; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #3fb950; animation: pulse 1.5s infinite; }
-        .pulse-dot.off { background-color: #ff5555; box-shadow: 0 0 8px #ff5555; animation: none; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-
-        header { text-align: center; margin-bottom: 25px; }
-        header h1 { color: var(--accent-yellow); font-size: 2.5rem; text-shadow: 0 0 15px rgba(255, 204, 0, 0.4); }
-        header p { color: var(--accent-blue); margin-top: 5px; }
-
-        /* Buscador global */
-        .search-container { max-width: 500px; margin: 15px auto 25px; }
-        .search-container input { width: 100%; padding: 12px 18px; background: var(--card-bg); border: 1px solid var(--accent-blue); border-radius: 30px; color: #fff; font-size: 1rem; outline: none; box-shadow: 0 0 10px rgba(0,242,254,0.2); }
-
-        .nav-tabs { display: flex; justify-content: center; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
-        .tab-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: #8b949e; padding: 10px 18px; cursor: pointer; font-weight: bold; border-radius: 8px; transition: 0.2s; }
-        .tab-btn.active { background: var(--accent-blue); color: var(--bg-color); border-color: var(--accent-blue); box-shadow: 0 0 10px rgba(0, 242, 254, 0.5); }
-        .tab-btn.admin { border-color: var(--accent-yellow); color: var(--accent-yellow); }
-
-        .container { max-width: 950px; margin: 0 auto; }
-        .section-title { font-size: 1.3rem; color: var(--accent-blue); margin: 35px 0 15px; border-bottom: 2px solid var(--border-color); padding-bottom: 5px; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        .card { background: linear-gradient(145deg, #101726, #161f33); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; text-align: center; transition: 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        .card:hover { border-color: var(--accent-yellow); transform: translateY(-3px); box-shadow: 0 0 15px rgba(255, 204, 0, 0.3); }
-        .card h3 { color: #fff; margin-bottom: 10px; font-size: 1.1rem; }
-        .price { font-size: 1.3rem; color: #3fb950; font-weight: bold; margin-bottom: 15px; }
-        
-        .btn { display: inline-block; width: 100%; padding: 11px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; text-decoration: none; transition: 0.2s; font-size: 0.95rem; }
-        .btn-auto { background: linear-gradient(135deg, var(--accent-yellow), #ff9900); color: var(--bg-color); }
-        .btn-auto:hover { opacity: 0.9; box-shadow: 0 0 10px var(--accent-yellow); }
-        .btn-saldo { background-color: #007cf0; color: #fff; margin-top: 5px; }
-
-        .coupon-box { margin-bottom: 25px; background: var(--card-bg); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color); display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-        .coupon-box input { padding: 10px; background: var(--bg-color); border: 1px solid var(--border-color); color: #fff; border-radius: 6px; flex: 1; }
-
-        /* Menú del Panel Admin Pro */
-        .admin-menu { display: flex; gap: 5px; margin-bottom: 25px; flex-wrap: wrap; }
-        .admin-menu-btn { background: var(--bg-color); border: 1px solid var(--border-color); color: #fff; padding: 7px 10px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.75rem; }
-        .admin-menu-btn.active-admin { background: var(--accent-yellow); color: var(--bg-color); border-color: var(--accent-yellow); }
-
-        /* Tarjeta de Pago con QR */
-        .payment-card { background: linear-gradient(135deg, #1f2d4a, #090d16); border: 1px solid var(--accent-blue); padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 15px; }
-        .qr-placeholder { background: #fff; width: 110px; height: 110px; margin: 10px auto; display: flex; justify-content: center; align-items: center; border-radius: 6px; font-weight: bold; color: #000; font-size: 0.8rem; text-align: center; border: 3px solid var(--accent-yellow); }
-
-        /* Muro de Reseñas y FAQs */
-        .reviews-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 40px; }
-        .review-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 15px; border-radius: 10px; }
-        .review-stars { color: var(--accent-yellow); margin-bottom: 5px; }
-        .faq-container, .tournaments-container { margin-top: 40px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
-        .faq-item { border-bottom: 1px solid var(--border-color); padding: 12px 0; }
-        .faq-question { color: var(--accent-yellow); font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; }
-        .faq-answer { color: #8b949e; font-size: 0.9rem; margin-top: 8px; display: none; }
-
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; padding: 20px; z-index: 1000; }
-        .modal-content { background: var(--card-bg); border: 1px solid var(--accent-blue); padding: 25px; border-radius: 12px; width: 100%; max-width: 420px; position: relative; max-height: 90vh; overflow-y: auto; }
-        .modal-content h3 { color: var(--accent-yellow); margin-bottom: 15px; text-align: center; }
-        .form-group { margin-bottom: 15px; text-align: left; }
-        .form-group label { display: block; font-size: 0.9rem; margin-bottom: 5px; color: #fff; }
-        .form-group input, .form-group select { width: 100%; padding: 10px; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; }
-        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 1.5rem; color: #8b949e; cursor: pointer; }
-        
-        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: #fff; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 999; text-decoration: none; }
-        .admin-panel { display: none; }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <!-- Nube superior con Estado y Anuncios rotativos -->
-        <div class="server-status">
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <span id="dotEstado" class="pulse-dot"></span>
-                <span id="textoEstadoServidor" style="color: #3fb950; font-weight: bold;">Plataforma Operativa 100%</span>
-            </div>
-            <div id="anuncioNube" style="color: var(--accent-yellow); font-weight: bold;">⚡ ¡Promo activa! Usá cupones GT10 o VIP20 ⚡</div>
-        </div>
-
-        <header>
-            <h1 style="color: var(--accent-yellow);">⚡ GT.STORE ⚡</h1>
-            <p>Plataforma Oficial de Recargas y Servicios</p>
-            
-            <div class="search-container">
-                <input type="text" id="inputBuscador" placeholder="🔍 ¿Qué producto buscas hoy? (Ej: 110, Pase, Semanal)..." oninput="filtrarProductos()">
-            </div>
-
-            <div class="nav-tabs">
-                <button class="tab-btn active" id="btnCliente" onclick="cambiarTab('cliente')">🛒 Cliente</button>
-                <button class="tab-btn" id="btnRevendedor" onclick="cambiarTab('revendedor')">💼 Revendedores</button>
-                <button class="tab-btn admin" id="btnAdm" onclick="cambiarTab('adm')">⚙️ Panel Admin Pro</button>
-            </div>
-        </header>
-
-        <!-- AVISO DE MANTENIMIENTO -->
-        <div id="avisoMantenimiento" style="display:none; background: #ff5555; color: #fff; text-align: center; padding: 20px; border-radius: 10px; font-weight: bold; font-size: 1.2rem; margin-bottom: 20px;">
-            🔴 ¡ATENCIÓN! La tienda se encuentra en MANTENIMIENTO temporalmente.
-        </div>
-
-        <!-- SECCIÓN CLIENTE -->
-        <div id="seccionCliente">
-            <div class="coupon-box">
-                <input type="text" id="inputCupon" placeholder="¿Tienes un cupón de descuento? (Ej: GT10)">
-                <button type="button" class="btn btn-auto" style="width: auto; padding: 10px 20px;" onclick="aplicarCupon()">Aplicar Cupón</button>
-                <span id="mensajeCupon" style="color: #3fb950; font-weight: bold; display:none;"></span>
-            </div>
-
-            <div class="section-title">💎 Free Fire - Con Stock (Pago con Código Único)</div>
-            <div class="grid" id="gridStockCliente"></div>
-
-            <div class="section-title">💎 Free Fire - Infinitos (Automático)</div>
-            <div class="grid" id="gridInfinitoCliente"></div>
-
-            <div class="section-title">📦 Pases y Tarjetas</div>
-            <div class="grid" id="gridExtrasCliente"></div>
-
-            <div class="tournaments-container">
-                <h3 style="color: var(--accent-yellow); margin-bottom: 10px;">🏆 Copa Xpansion Free Fire #15</h3>
-                <p style="color: #8b949e; font-size: 0.9rem; margin-bottom: 15px;">¡Anota a tu escuadra en nuestro próximo torneo custom y gana premios en diamantes!</p>
-                <a href="https://wa.me/5491167982665?text=Hola%20GT.STORE,%20quiero%20inscribir%20a%20mi%20escuadra%20al%20torneo" target="_blank" class="btn btn-auto" style="text-align: center; display: block;">Inscribir Equipo al Torneo</a>
-            </div>
-
-            <div class="faq-container">
-                <h3 style="color: var(--accent-yellow); margin-bottom: 15px;">❓ Preguntas Frecuentes (FAQ)</h3>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">¿Cuánto tarda en acreditarse mi recarga? <span>▼</span></div>
-                    <div class="faq-answer">Las recargas y pedidos por código único se procesan de inmediato tras enviar el comprobante por WhatsApp.</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECCIÓN REVENDEDORES -->
-        <div id="seccionRevendedor" style="display: none;">
-            <div id="loginRevendedor" style="max-width: 400px; margin: 40px auto; background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--accent-yellow); text-align: center;">
-                <h2 style="color: var(--accent-yellow); margin-bottom: 15px;">🔐 Acceso Revendedores</h2>
-                <form onsubmit="intentarLoginRev(event)">
-                    <div class="form-group"><label>Usuario:</label><input type="text" id="userRev" required placeholder="Tu usuario"></div>
-                    <div class="form-group"><label>Contraseña:</label><input type="password" id="passRev" required placeholder="Tu contraseña"></div>
-                    <button type="submit" class="btn btn-auto" style="margin-top: 10px;">Ingresar al Panel</button>
-                </form>
-            </div>
-
-            <div id="contenidoRevendedor" style="display: none;">
-                <div style="background: linear-gradient(135deg, #1f2d4a, #101726); border: 1px solid var(--accent-yellow); padding: 20px; border-radius: 12px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
-                    <div>
-                        <h2 style="color: var(--accent-yellow); margin-bottom: 5px;">🌟 Bienvenido, Revendedor</h2>
-                        <p style="color: #c9d1d9;">Saldo disponible: <strong id="saldoRevendedor" style="color: #3fb950; font-size: 1.2rem;">$0 ARS</strong></p>
-                    </div>
-                    <button class="tab-btn" onclick="cerrarSesionRev()" style="border-color: #ff5555; color: #ff5555;">Cerrar Sesión</button>
-                </div>
-                <div class="section-title">💎 Free Fire - Con Stock (Mayorista)</div>
-                <div class="grid" id="gridStockRev"></div>
-                <div class="section-title">💎 Free Fire - Infinitos (Mayorista / Con Saldo)</div>
-                <div class="grid" id="gridInfinitoRev"></div>
-                <div class="section-title">📦 Pases y Tarjetas (Mayorista)</div>
-                <div class="grid" id="gridExtrasRev"></div>
-            </div>
-        </div>
-
-        <!-- SECCIÓN ADMIN PRO CON LOGIN Tyg / Naty1989 -->
-        <div id="seccionAdm" class="admin-panel">
-            <!-- LOGIN DE ADMIN -->
-            <div id="loginAdminBox" style="max-width: 400px; margin: 40px auto; background: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--accent-yellow); text-align: center;">
-                <h2 style="color: var(--accent-yellow); margin-bottom: 15px;">⚙️ Login Administrador</h2>
-                <form onsubmit="intentarLoginAdmin(event)">
-                    <div class="form-group"><label>Usuario:</label><input type="text" id="userAdminInput" required placeholder="Usuario admin"></div>
-                    <div class="form-group"><label>Contraseña:</label><input type="password" id="passAdminInput" required placeholder="Contraseña admin"></div>
-                    <button type="submit" class="btn btn-auto" style="margin-top: 10px;">Acceder al Panel</button>
-                </form>
-            </div>
-
-            <!-- CONTENIDO DEL PANEL ADMIN (OCULTO HASTA LOGUEARSE) -->
-            <div id="contenidoAdminPro" style="display: none;">
-                <div class="admin-menu">
-                    <button class="admin-menu-btn active-admin" id="m1" onclick="abrirAdminMenu('resumen')">📊 Resumen</button>
-                    <button class="admin-menu-btn" id="m2" onclick="abrirAdminMenu('manus')">🤖 Panel Manus (24/7)</button>
-                    <button class="admin-menu-btn" id="m3" onclick="abrirAdminMenu('precios')">💲 Precios</button>
-                    <button class="admin-menu-btn" id="m4" onclick="abrirAdminMenu('validador')">🔍 Validar</button>
-                    <button class="admin-menu-btn" id="m5" onclick="abrirAdminMenu('crear')">➕ Crear Rev</button>
-                    <button class="admin-menu-btn" id="m6" onclick="abrirAdminMenu('saldos')">💳 Saldo</button>
-                    <button class="admin-menu-btn" id="m7" onclick="abrirAdminMenu('cupones')">🎟️ Cupones</button>
-                    <button class="admin-menu-btn" id="m8" onclick="abrirAdminMenu('estado')">🔌 ON/OFF</button>
-                </div>
-
-                <!-- 1. RESUMEN -->
-                <div id="adminResumen" class="card" style="padding: 25px; text-align: left;">
-                    <h2 style="color: var(--accent-yellow); margin-bottom: 15px;">📊 Resumen General</h2>
-                    <h3 style="color: var(--accent-blue); font-size: 1.5rem;" id="contadorPedidosTotal">0 Pedidos Totales</h3>
-                </div>
-
-                <!-- 2. PANEL MANUS (24/7) - SOLAPA OPTIMIZADA PARA LA IA -->
-                <div id="adminManus" class="card" style="padding: 25px; text-align: left; display: none; border-color: var(--accent-blue);">
-                    <h2 style="color: var(--accent-blue); margin-bottom: 5px;">🤖 Panel de Monitoreo Manus (24/7)</h2>
-                    <p style="color: #8b949e; font-size: 0.85rem; margin-bottom: 15px;">Vista limpia para que el agente lea los pedidos pendientes al instante.</p>
-                    <div style="overflow-x: auto;">
-                        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
-                            <thead>
-                                <tr style="border-bottom: 2px solid var(--border-color); color: #8b949e;">
-                                    <th style="padding: 8px;">Código</th>
-                                    <th style="padding: 8px;">Producto</th>
-                                    <th style="padding: 8px;">ID de Juego / Detalle</th>
-                                    <th style="padding: 8px;">Estado</th>
-                                    <th style="padding: 8px;">Acción IA</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tablaManusPedidos">
-                                <tr><td colspan="5" style="padding: 15px; text-align: center; color: #8b949e;">Sin pedidos pendientes.</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- 3. GESTOR DE PRECIOS -->
-                <div id="adminPrecios" class="card" style="padding: 25px; text-align: left; display: none;">
-                    <h2 style="color: var(--accent-yellow); margin-bottom: 10px;">💲 Modificador de Precios</h2>
-                    <div class="form-group"><label>Sección:</label><select id="tipoSeccionPrecio" onchange="poblarProductosAdmin()"><option value="cliente">Clientes</option><option value="rev">Revendedores</option></select></div>
-                    <div class="form-group"><label>Producto:</label><select id="selectProdPrecio" onchange="cargarPrecioActual()"></select></div>
-                    <div class="form-group"><label>Nuevo Precio ($):</label><input type="number" id="nuevoPrecioVal"></div>
-                    <button type="button" class="btn btn-auto" onclick="guardarNuevoPrecio()">Actualizar Precio</button>
-                </div>
-
-                <!-- 4. VALIDADOR -->
-                <div id="adminValidador" class="card" style="padding: 25px; text-align: left; display: none;">
-                    <h2 style="color: var(--accent-blue); margin-bottom: 10px;">🔍 Validador de Código</h2>
-                    <div class="form-group"><label>Código:</label><input type="text" id="inputBuscarCodigo" placeholder="Ej: 482910"></div>
-                    <button type="button" class="btn btn-auto" onclick="buscarCodigoPedido()">Verificar</button>
-                    <div id="resultadoValidacion" style="margin-top: 15px; font-weight: bold;"></div>
-                </div>
-
-                <!-- 5. CREAR REVENDEDOR -->
-                <div id="adminCrear" class="card" style="padding: 25px; text-align: left; display: none;">
-                    <h2 style="color: var(--accent-yellow); margin-bottom: 15px;">➕ Crear Revendedor</h2>
-                    <form onsubmit="crearRevendedor(event)">
-                        <div class="form-group"><label>Usuario:</label><input type="text" id="nuevoUser" required></div>
-                        <div class="form-group"><label>Contraseña:</label><input type="text" id="nuevoPass" required></div>
-                        <div class="form-group"><label>Saldo Inicial:</label><input type="number" id="nuevoSaldo" required></div>
-                        <button type="submit" class="btn btn-auto">Crear</button>
-                    </form>
-                </div>
-
-                <!-- 6. GESTIONAR SALDO -->
-                <div id="adminSaldos" class="card" style="padding: 25px; text-align: left; display: none;">
-                    <h2 style="color: var(--accent-blue); margin-bottom: 15px;">💳 Cargar Saldo</h2>
-                    <div class="form-group"><label>Revendedor:</label><select id="selectRevSaldo"></select></div>
-                    <div class="form-group"><label>Monto (+/-):</label><input type="number" id="montoSaldoCambio"></div>
-                    <button type="button" class="btn btn-auto" onclick="modificarSaldoRevendedor()">Aplicar</button>
-                </div>
-
-                <!-- 7. CUPONES -->
-                <div id="adminCupones" class="card" style="padding: 25px; text-align: left; display: none;">
-                    <h2 style="color: var(--accent-yellow); margin-bottom: 15px;">🎟️ Crear Cupón</h2>
-                    <form onsubmit="crearCupon(event)">
-                        <div class="form-group"><label>Código:</label><input type="text" id="codigoCuponNuevo" required></div>
-                        <div class="form-group"><label>Descuento %:</label><input type="number" id="descCuponNuevo" required></div>
-                        <button type="submit" class="btn btn-auto">Crear Cupón</button>
-                    </form>
-                </div>
-
-                <!-- 8. APAGAR / ENCENDER -->
-                <div id="adminEstado" class="card" style="padding: 25px; text-align: left; display: none;">
-                    <h2 style="color: #ff5555; margin-bottom: 10px;">🔌 Estado de la Web</h2>
-                    <div style="display: flex; gap: 10px;">
-                        <button type="button" class="btn" style="background: #238636; color: #fff;" onclick="cambiarEstadoWeb(true)">🟢 Encender</button>
-                        <button type="button" class="btn" style="background: #ff5555; color: #fff;" onclick="cambiarEstadoWeb(false)">🔴 Apagar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL DE PAGO -->
-    <div id="modalPagoUnico" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="cerrarModalPago()">&times;</span>
-            <h3 id="modalPagoTitulo">Pago con Código Único</h3>
-            <div class="payment-card">
-                <span style="color: #8b949e; font-size: 0.85rem;">Alias oficial:</span>
-                <strong style="color: var(--accent-blue); font-size: 1.1rem; display: block; margin: 5px 0;">Salva180724</strong>
-                <button type="button" onclick="copiarAlias()" style="background: var(--border-color); color: var(--accent-yellow); border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-weight: bold;">📋 Copiar Alias</button>
-            </div>
-            <form onsubmit="enviarPagoWsp(event)">
-                <div class="form-group"><label>Tu ID de Free Fire:</label><input type="text" id="playerIdWsp" required placeholder="Ej: 123456789"></div>
-                <div class="form-group"><label>Comprobante:</label><input type="file" id="comprobanteWsp" required accept="image/*"></div>
-                <button type="submit" class="btn btn-auto" style="margin-top: 10px;">Generar Código y Enviar</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="modalAuto" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="cerrarModal()">&times;</span>
-            <h3 id="modalTitulo">Recarga Automática Infinita</h3>
-            <div class="payment-card">
-                <strong style="color: var(--accent-blue); font-size: 1.1rem; display: block; margin: 5px 0;">Salva180724</strong>
-            </div>
-            <form onsubmit="enviarRecargaCliente(event)">
-                <div class="form-group"><label>Tu ID de Free Fire:</label><input type="text" id="playerId" required placeholder="Ej: 123456789"></div>
-                <div class="form-group"><label>Comprobante:</label><input type="file" id="comprobante" required accept="image/*"></div>
-                <button type="submit" class="btn btn-auto" style="margin-top: 10px;">Confirmar y Enviar</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="modalSaldo" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="cerrarModalSaldo()">&times;</span>
-            <h3 id="modalTituloSaldo">Pago con Saldo</h3>
-            <form onsubmit="enviarRecargaSaldo(event)">
-                <div class="form-group"><label>Tu ID de Free Fire:</label><input type="text" id="playerIdRev" required placeholder="Ej: 123456789"></div>
-                <button type="submit" class="btn btn-saldo" style="margin-top: 10px;">Pagar con Saldo</button>
-            </form>
-        </div>
-    </div>
-
-    <a href="https://wa.me/5491167982665?text=Hola%20GT.STORE,%20necesito%20ayuda" target="_blank" class="whatsapp-float">💬</a>
-
-    <script>
-        const numeroWsp = "5491167982665";
-        let paqueteSeleccionado = "";
-        let precioSeleccionado = 0;
-        let revendedorLogueado = null;
-        let tiendaEncendida = true;
-        let pedidosBD = JSON.parse(localStorage.getItem('gt_pedidos')) || [];
-        let descuentoAplicado = 0;
-
-        const anunciosNube = [
-            "⚡ ¡Promo activa! Usá cupones GT10 o VIP20 ⚡",
-            "💎 Recargas de Free Fire 100% seguras y al instante",
-            "📦 Recordá enviar tu código de pago junto al comprobante"
-        ];
-        let indexAnuncio = 0;
-        setInterval(() => {
-            indexAnuncio = (indexAnuncio + 1) % anunciosNube.length;
-            document.getElementById('anuncioNube').innerText = anunciosNube[indexAnuncio];
-        }, 5000);
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GT.STORE - Plataforma Oficial de Recargas</title>
-    <style>
-        body { background-color: #0f0f0f; color: white; font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 20px; }
-        h1 { color: #ffcc00; }
-        .store-container { max-width: 600px; margin: 0 auto; background: #1a1a1a; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        input { padding: 10px; width: 60%; border-radius: 5px; border: none; margin-right: 10px; }
-        button { padding: 10px 20px; background: #ffcc00; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
-        button:hover { background: #e6b800; }
-        #resultadoVerificacion { margin-top: 15px; font-weight: bold; }
+        * { box-sizing: border-box; }
+        body { background-color: #0d0d0d; color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; text-align: center; }
+        h1 { color: #ffcc00; margin-bottom: 5px; text-shadow: 0 0 10px rgba(255,204,0,0.4); }
+        .store-container { max-width: 800px; margin: 0 auto; background: #161616; padding: 25px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.7); border: 1px solid #262626; }
+        .section { background: #1f1f1f; padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #2a2a2a; }
+        .section h3 { color: #ffcc00; margin-top: 0; }
+        input { padding: 12px; width: 65%; border-radius: 6px; border: none; margin-right: 10px; margin-bottom: 10px; background: #2b2b2b; color: white; font-size: 16px; }
+        input:focus { outline: 2px solid #ffcc00; }
+        button { padding: 12px 22px; background: #ffcc00; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; color: #000; font-size: 16px; transition: 0.2s; }
+        button:hover { background: #e6b800; transform: scale(1.02); }
+        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 15px; text-align: left; }
+        .card { background: #262626; padding: 15px; border-radius: 8px; border-left: 4px solid #ffcc00; }
+        .card h4 { color: #ffcc00; margin: 0 0 8px 0; }
+        .card p { margin: 0; color: #b3b3b3; font-size: 14px; }
+        #resultadoVerificacion, #resultadoDescuento { margin-top: 15px; font-weight: bold; font-size: 15px; }
     </style>
 </head>
 <body>
 
     <div class="store-container">
         <h1>⚡ GT.STORE ⚡</h1>
-        <p>Plataforma Oficial de Recargas y Servicios</p>
+        <p style="color: #888; margin-top: 0;">Plataforma Oficial de Recargas, Cuentas y Servicios Digitales</p>
 
-        <!-- SECCIÓN DE VERIFICACIÓN DE ID DE FREE FIRE -->
-        <div style="background: #111; padding: 15px; border-radius: 8px; margin: 20px 0;">
-            <h3>Verificar tu ID de Free Fire</h3>
-            <input type="text" id="playerId" placeholder="Ingresa tu ID (ej: 686631178)">
-            <button onclick="verificarJugador()">Verificar</button>
+        <!-- SECCIÓN 1: VERIFICAR ID DE FREE FIRE CON VOLSEVER -->
+        <div class="section">
+            <h3>🎮 Verificador Oficial Free Fire</h3>
+            <p style="font-size: 13px; color: #aaa;">Ingresa tu ID de jugador para validar tu cuenta antes de realizar la recarga.</p>
+            <input type="text" id="playerId" placeholder="Ej: 686631178">
+            <button onclick="verificarJugador()">Verificar ID</button>
             <p id="resultadoVerificacion"></p>
+        </div>
+
+        <!-- SECCIÓN 2: VERIFICAR DESCUENTOS Y CUPONES -->
+        <div class="section">
+            <h3>🏷️ Estado de Descuentos para Revendedores</h3>
+            <p style="font-size: 13px; color: #aaa;">Consulta las promociones y tarifas especiales activas en el sistema.</p>
+            <button onclick="verificarDescuentos()">Consultar Descuentos</button>
+            <p id="resultadoDescuento"></p>
+        </div>
+
+        <!-- SECCIÓN 3: CATÁLOGO COMPLETO PARA CLIENTES Y REVENDEDORES -->
+        <div class="section">
+            <h3>📦 Catálogo General de Productos</h3>
+            <div class="catalog-grid">
+                <div class="card">
+                    <h4>Free Fire - Diamantes</h4>
+                    <p>Recargas directas e inmediatas mediante ID oficial de jugador.</p>
+                </div>
+                <div class="card">
+                    <h4>Blood Strike</h4>
+                    <p>Oro, pases y paquetes exclusivos al mejor precio del mercado.</p>
+                </div>
+                <div class="card">
+                    <h4>EA Sports FC Mobile</h4>
+                    <p>FC Points disponibles para todas las regiones y cuentas.</p>
+                </div>
+                <div class="card">
+                    <h4>Roblox Robux</h4>
+                    <p>Moneda virtual y accesos directos de forma segura.</p>
+                </div>
+                <div class="card">
+                    <h4>Cuentas Streaming</h4>
+                    <p>Perfiles estables y accesos para plataformas digitales.</p>
+                </div>
+                <div class="card">
+                    <h4>Software & IA</h4>
+                    <p>Licencias, herramientas de productividad y accesos de software.</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
+        // Función para consultar el ID de Free Fire al servidor y Volsever
         async function verificarJugador() {
             const id = document.getElementById('playerId').value;
             const resultado = document.getElementById('resultadoVerificacion');
             
             if (!id) {
-                resultado.style.color = "red";
+                resultado.style.color = "#ff4d4d";
                 resultado.innerText = "Por favor, ingresa un ID válido.";
                 return;
             }
 
-            resultado.style.color = "yellow";
-            resultado.innerText = "Verificando con Volsever...";
+            resultado.style.color = "#ffcc00";
+            resultado.innerText = "Verificando con el servidor...";
 
             try {
                 const res = await fetch(`/api/check-player?id=${id}`);
@@ -403,263 +100,38 @@
                     resultado.style.color = "#00ffcc";
                     resultado.innerText = `¡ID Encontrado! Jugador: ${data.data.username} (Región: ${data.data.region})`;
                 } else {
-                    resultado.style.color = "red";
-                    resultado.innerText = "ID no encontrado o inválido.";
+                    resultado.style.color = "#ff4d4d";
+                    resultado.innerText = "ID no encontrado o inválido en el sistema.";
                 }
             } catch (error) {
-                resultado.style.color = "red";
-                resultado.innerText = "Error al conectar con el servidor.";
+                resultado.style.color = "#ff4d4d";
+                resultado.innerText = "Error al conectar con la API de verificación.";
+            }
+        }
+
+        // Función para consultar descuentos a la API de Volsever
+        async function verificarDescuentos() {
+            const resultado = document.getElementById('resultadoDescuento');
+            resultado.style.color = "#ffcc00";
+            resultado.innerText = "Consultando sistema de descuentos...";
+
+            try {
+                const res = await fetch('/api/check-discounts');
+                const data = await res.json();
+
+                if (data.status) {
+                    resultado.style.color = "#00ffcc";
+                    resultado.innerText = "¡Descuentos y tarifas de revendedor activos y sincronizados!";
+                } else {
+                    resultado.style.color = "#ff4d4d";
+                    resultado.innerText = "No se encontraron descuentos activos en este momento.";
+                }
+            } catch (error) {
+                resultado.style.color = "#ff4d4d";
+                resultado.innerText = "Error al conectar con el servidor de descuentos.";
             }
         }
     </script>
 
-</body>
-</html>
-        let cuponesDB = [{ codigo: "GT10", descuento: 10 }, { codigo: "VIP20", descuento: 20 }];
-        let revendedoresDB = [{ user: "MD_Shop", pass: "admin123", saldo: 50000 }, { user: "tinchostore", pass: "1234", saldo: 25000 }];
-
-        let stockCliente = [
-            { name: "110 💎 (Con Stock)", price: 1100 }, { name: "341 💎 (Con Stock)", price: 3100 },
-            { name: "572 💎 (Con Stock)", price: 4900 }, { name: "1100 💎 (Con Stock)", price: 9000 }
-        ];
-        let infinitoCliente = [
-            { name: "110 💎 (Infinito)", price: 1200 }, { name: "341 💎 (Infinito)", price: 3820 },
-            { name: "572 💎 (Infinito)", price: 6000 }, { name: "1100 💎 (Infinito)", price: 10950 }
-        ];
-        let extrasCliente = [{ name: "Pase Booyah", price: 1800 }, { name: "Tarjeta Semanal", price: 3500 }];
-
-        let stockRev = [{ name: "110 💎 (Stock - Rev)", price: 950 }, { name: "341 💎 (Stock - Rev)", price: 2800 }];
-        let infinitoRev = [{ name: "110 💎 (Infinito - Rev)", price: 1050 }, { name: "341 💎 (Infinito - Rev)", price: 3400 }];
-        let extrasRev = [{ name: "Pases (Rev)", price: 1540 }, { name: "Semanal (Rev)", price: 3000 }];
-
-        function calcularPrecioFinal(precioBase) {
-            if (descuentoAplicado > 0) return Math.round(precioBase * (1 - descuentoAplicado / 100));
-            return precioBase;
-        }
-
-        function guardarPedidosEnMemoria() {
-            localStorage.setItem('gt_pedidos', JSON.stringify(pedidosBD));
-        }
-
-        function renderizarTodo(filtro = "") {
-            const f = filtro.toLowerCase();
-            const filtrarLista = (lista, esAuto) => lista.filter(i => i.name.toLowerCase().includes(f)).map(d => {
-                const p = calcularPrecioFinal(d.price);
-                return `<div class="card"><h3>${d.name}</h3><div class="price">$${p} ARS</div><button class="btn btn-auto" onclick="${esAuto ? `abrirModal('${d.name}',${p})` : `abrirModalPago('${d.name}',${p})`}">${esAuto ? "Comprar Automático" : "Comprar con Código"}</button></div>`;
-            }).join('');
-
-            document.getElementById('gridStockCliente').innerHTML = filtrarLista(stockCliente, false);
-            document.getElementById('gridInfinitoCliente').innerHTML = filtrarLista(infinitoCliente, true);
-            document.getElementById('gridExtrasCliente').innerHTML = filtrarLista(extrasCliente, false);
-
-            document.getElementById('gridStockRev').innerHTML = stockRev.map(d => `<div class="card" style="border-color: var(--accent-yellow);"><h3>${d.name}</h3><div class="price">$${d.price} ARS</div><button class="btn btn-auto" onclick="abrirModalPago('${d.name}', ${d.price})">Comprar con Código</button></div>`).join('');
-            document.getElementById('gridInfinitoRev').innerHTML = infinitoRev.map(d => `<div class="card" style="border-color: var(--accent-yellow);"><h3>${d.name}</h3><div class="price">$${d.price} ARS</div><button class="btn btn-saldo" onclick="abrirModalSaldo('${d.name}', ${d.price})">💳 Pagar con Saldo</button></div>`).join('');
-            document.getElementById('gridExtrasRev').innerHTML = extrasRev.map(e => `<div class="card" style="border-color: var(--accent-yellow);"><h3>${e.name}</h3><div class="price">$${e.price} ARS</div><button class="btn btn-auto" onclick="abrirModalPago('${e.name}', ${e.price})">Comprar con Código</button></div>`).join('');
-
-            document.getElementById('selectRevSaldo').innerHTML = revendedoresDB.map(r => `<option value="${r.user}">${r.user} ($${r.saldo})</option>`).join('');
-            document.getElementById('contadorPedidosTotal').innerText = `${pedidosBD.length} Pedidos Totales`;
-            renderizarTablaManus();
-            poblarProductosAdmin();
-        }
-
-        function filtrarProductos() { renderizarTodo(document.getElementById('inputBuscador').value); }
-        function toggleFaq(el) { const ans = el.nextElementSibling; ans.style.display = ans.style.display === 'block' ? 'none' : 'block'; }
-
-        // LOGIN DE ADMINISTRADOR (Tyg / Naty1989)
-        function intentarLoginAdmin(e) {
-            e.preventDefault();
-            const u = document.getElementById('userAdminInput').value.trim();
-            const p = document.getElementById('passAdminInput').value.trim();
-
-            if (u === "Tyg" && p === "Naty1989") {
-                document.getElementById('loginAdminBox').style.display = 'none';
-                document.getElementById('contenidoAdminPro').style.display = 'block';
-                alert("¡Bienvenido Admin Tyg!");
-            } else {
-                alert("Usuario o contraseña de administrador incorrectos.");
-            }
-        }
-
-        // PANEL MANUS (24/7) - TABLA LIMPIA PARA LA IA
-        function renderizarTablaManus() {
-            const tbody = document.getElementById('tablaManusPedidos');
-            const pendientes = pedidosBD.filter(p => p.estado === 'Pendiente');
-
-            if(pendientes.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" style="padding: 15px; text-align: center; color: #8b949e;">Sin pedidos pendientes.</td></tr>`;
-                return;
-            }
-            tbody.innerHTML = pendientes.map((p, idxReal) => `
-                <tr style="border-bottom: 1px solid var(--border-color);" data-codigo="${p.codigo}">
-                    <td style="padding: 8px; color: var(--accent-yellow); font-weight: bold;">#${p.codigo}</td>
-                    <td style="padding: 8px;">${p.producto}</td>
-                    <td style="padding: 8px; color: var(--accent-blue); font-weight: bold;">${p.detalle}</td>
-                    <td style="padding: 8px; color: #ff9900;">${p.estado}</td>
-                    <td style="padding: 8px;"><button class="btn" style="padding: 4px 8px; font-size: 0.75rem; background: #238636; color: #fff;" onclick="marcarEntregadoManus('${p.codigo}')">Marcar Entregado</button></td>
-                </tr>
-            `).join('');
-        }
-
-        function marcarEntregadoManus(codigo) {
-            const pedido = pedidosBD.find(p => p.codigo === codigo);
-            if(pedido) {
-                pedido.estado = 'Entregado';
-                guardarPedidosEnMemoria();
-                renderizarTodo();
-            }
-        }
-
-        function poblarProductosAdmin() {
-            const sec = document.getElementById('tipoSeccionPrecio').value;
-            let lista = (sec === 'cliente') ? [...stockCliente, ...infinitoCliente, ...extrasCliente] : [...stockRev, ...infinitoRev, ...extrasRev];
-            document.getElementById('selectProdPrecio').innerHTML = lista.map(i => `<option value="${i.name}">${i.name} ($${i.price})</option>`).join('');
-            cargarPrecioActual();
-        }
-
-        function cargarPrecioActual() {
-            const sec = document.getElementById('tipoSeccionPrecio').value;
-            const prod = document.getElementById('selectProdPrecio').value;
-            let lista = (sec === 'cliente') ? [...stockCliente, ...infinitoCliente, ...extrasCliente] : [...stockRev, ...infinitoRev, ...extrasRev];
-            let item = lista.find(i => i.name === prod);
-            if(item) document.getElementById('nuevoPrecioVal').value = item.price;
-        }
-
-        function guardarNuevoPrecio() {
-            const sec = document.getElementById('tipoSeccionPrecio').value;
-            const prod = document.getElementById('selectProdPrecio').value;
-            const nuevoVal = Number(document.getElementById('nuevoPrecioVal').value);
-            let listas = (sec === 'cliente') ? [stockCliente, infinitoCliente, extrasCliente] : [stockRev, infinitoRev, extrasRev];
-            listas.forEach(l => { let en = l.find(i => i.name === prod); if(en) en.price = nuevoVal; });
-            renderizarTodo();
-            alert(`¡Precio actualizado!`);
-        }
-
-        function aplicarCupon() {
-            const codigo = document.getElementById('inputCupon').value.trim().toUpperCase();
-            const msg = document.getElementById('mensajeCupon');
-            const enc = cuponesDB.find(c => c.codigo === codigo);
-            if(enc) { descuentoAplicado = enc.descuento; msg.innerText = `¡${descuentoAplicado}% OFF!`; msg.style.display = 'inline'; renderizarTodo(); }
-            else { alert("Cupón inválido"); }
-        }
-
-        function crearCupon(e) {
-            e.preventDefault();
-            const codigo = document.getElementById('codigoCuponNuevo').value.trim().toUpperCase();
-            const descuento = Number(document.getElementById('descCuponNuevo').value);
-            if(codigo && !isNaN(descuento)) { cuponesDB.push({ codigo, descuento }); alert(`¡Cupón ${codigo} creado!`); }
-        }
-
-        function cambiarTab(tab) {
-            document.getElementById('seccionCliente').style.display = tab === 'cliente' ? 'block' : 'none';
-            document.getElementById('seccionRevendedor').style.display = tab === 'revendedor' ? 'block' : 'none';
-            document.getElementById('seccionAdm').style.display = tab === 'adm' ? 'block' : 'none';
-            document.getElementById('btnCliente').className = `tab-btn ${tab === 'cliente' ? 'active' : ''}`;
-            document.getElementById('btnRevendedor').className = `tab-btn ${tab === 'revendedor' ? 'active' : ''}`;
-            document.getElementById('btnAdm').className = `tab-btn admin ${tab === 'adm' ? 'active' : ''}`;
-        }
-
-        function abrirAdminMenu(menu) {
-            ['Resumen', 'Manus', 'Precios', 'Validador', 'Crear', 'Saldos', 'Cupones', 'Estado'].forEach(m => {
-                document.getElementById('admin' + m).style.display = (m.toLowerCase() === menu.toLowerCase()) ? 'block' : 'none';
-            });
-            ['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8'].forEach((btnId, idx) => {
-                const nombres = ['resumen', 'manus', 'precios', 'validador', 'crear', 'saldos', 'cupones', 'estado'];
-                document.getElementById(btnId).className = `admin-menu-btn ${nombres[idx] === menu.toLowerCase() ? 'active-admin' : ''}`;
-            });
-        }
-
-        function cambiarEstadoWeb(estado) {
-            tiendaEncendida = estado;
-            document.getElementById('avisoMantenimiento').style.display = estado ? 'none' : 'block';
-            document.getElementById('textoEstadoServidor').innerText = estado ? "Plataforma Operativa 100%" : "Modo Mantenimiento 🔴";
-            document.getElementById('dotEstado').className = estado ? "pulse-dot" : "pulse-dot off";
-            alert(estado ? "¡Tienda encendida!" : "¡Tienda apagada!");
-        }
-
-        function buscarCodigoPedido() {
-            const cod = document.getElementById('inputBuscarCodigo').value.trim();
-            const res = document.getElementById('resultadoValidacion');
-            const encontrado = pedidosBD.find(p => p.codigo === cod);
-            if(encontrado) res.innerHTML = `<span style="color: #3fb950;">✅ Válido | Prod: ${encontrado.producto} | ID: ${encontrado.detalle} | Estado: ${encontrado.estado}</span>`;
-            else res.innerHTML = `<span style="color: #ff5555;">❌ Inexistente.</span>`;
-        }
-
-        function modificarSaldoRevendedor() {
-            const usuario = document.getElementById('selectRevSaldo').value;
-            const monto = Number(document.getElementById('montoSaldoCambio').value);
-            const rev = revendedoresDB.find(r => r.user === usuario);
-            if(rev && !isNaN(monto)) { rev.saldo += monto; alert(`Saldo actualizado: $${rev.saldo}`); renderizarTodo(); }
-        }
-
-        function intentarLoginRev(e) {
-            e.preventDefault();
-            const u = document.getElementById('userRev').value.trim();
-            const p = document.getElementById('passRev').value.trim();
-            const enc = revendedoresDB.find(r => r.user === u && r.pass === p);
-            if (enc) {
-                revendedorLogueado = enc;
-                document.getElementById('loginRevendedor').style.display = 'none';
-                document.getElementById('contenidoRevendedor').style.display = 'block';
-                document.getElementById('saldoRevendedor').innerText = `$${enc.saldo.toLocaleString()} ARS`;
-            } else { alert("Datos incorrectos."); }
-        }
-
-        function cerrarSesionRev() { revendedorLogueado = null; document.getElementById('loginRevendedor').style.display = 'block'; document.getElementById('contenidoRevendedor').style.display = 'none'; }
-        function crearRevendedor(e) {
-            e.preventDefault();
-            const user = document.getElementById('nuevoUser').value.trim();
-            const pass = document.getElementById('nuevoPass').value.trim();
-            const saldo = Number(document.getElementById('nuevoSaldo').value);
-            if (user && pass && !isNaN(saldo)) { revendedoresDB.push({ user, pass, saldo }); alert(`¡Revendedor creado!`); }
-        }
-
-        function abrirModalPago(nombre, precio) { if(!tiendaEncendida) return; paqueteSeleccionado = nombre; precioSeleccionado = precio; document.getElementById('modalPagoUnico').style.display = 'flex'; }
-        function abrirModal(nombre, precio) { if(!tiendaEncendida) return; paqueteSeleccionado = nombre; precioSeleccionado = precio; document.getElementById('modalAuto').style.display = 'flex'; }
-        function abrirModalSaldo(nombre, precio) {
-            if(!tiendaEncendida || !revendedorLogueado) return;
-            if (revendedorLogueado.saldo < precio) { alert("Saldo insuficiente"); return; }
-            paqueteSeleccionado = nombre; precioSeleccionado = precio; document.getElementById('modalSaldo').style.display = 'flex';
-        }
-
-        function cerrarModalPago() { document.getElementById('modalPagoUnico').style.display = 'none'; }
-        function cerrarModal() { document.getElementById('modalAuto').style.display = 'none'; }
-        function cerrarModalSaldo() { document.getElementById('modalSaldo').style.display = 'none'; }
-        function copiarAlias() { navigator.clipboard.writeText("Salva180724"); alert("Alias copiado!"); }
-        function generarCodigoAleatorio() { return Math.floor(100000 + Math.random() * 900000).toString(); }
-
-        function enviarPagoWsp(e) {
-            e.preventDefault();
-            const detalle = document.getElementById('playerIdWsp').value;
-            const codigoUnico = generarCodigoAleatorio();
-            pedidosBD.push({ codigo: codigoUnico, producto: paqueteSeleccionado, detalle: detalle, estado: 'Pendiente' });
-            guardarPedidosEnMemoria();
-            window.open(`https://wa.me/${numeroWsp}?text=${encodeURIComponent(`Hola GT.STORE! Mi código es #${codigoUnico}, producto: ${paqueteSeleccionado}, ID: ${detalle}`)}`, '_blank');
-            cerrarModalPago(); renderizarTodo();
-        }
-
-        function enviarRecargaCliente(e) {
-            e.preventDefault();
-            const idJuego = document.getElementById('playerId').value;
-            const codigoUnico = generarCodigoAleatorio();
-            pedidosBD.push({ codigo: codigoUnico, producto: paqueteSeleccionado, detalle: idJuego, estado: 'Pendiente' });
-            guardarPedidosEnMemoria();
-            window.open(`https://wa.me/${numeroWsp}?text=${encodeURIComponent(`Hola GT.STORE! Automático #${codigoUnico}, producto: ${paqueteSeleccionado}, ID: ${idJuego}`)}`, '_blank');
-            cerrarModal(); renderizarTodo();
-        }
-
-        function enviarRecargaSaldo(e) {
-            e.preventDefault();
-            const idJuego = document.getElementById('playerIdRev').value;
-            const codigoUnico = generarCodigoAleatorio();
-            revendedorLogueado.saldo -= precioSeleccionado;
-            document.getElementById('saldoRevendedor').innerText = `$${revendedorLogueado.saldo.toLocaleString()} ARS`;
-            pedidosBD.push({ codigo: codigoUnico, producto: paqueteSeleccionado, detalle: idJuego, estado: 'Entregado' });
-            guardarPedidosEnMemoria();
-            window.open(`https://wa.me/${numeroWsp}?text=${encodeURIComponent(`Hola GT.STORE! Saldo revendedor #${codigoUnico}, producto: ${paqueteSeleccionado}, ID: ${idJuego}`)}`, '_blank');
-            cerrarModalSaldo(); renderizarTodo();
-        }
-
-        renderizarTodo();
-    </script>
 </body>
 </html>
