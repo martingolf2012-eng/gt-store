@@ -5,7 +5,9 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
-// Ruta para verificar jugadores de Free Fire con Volsever
+const API_KEY = 'pk_live_Ef4IYcFG2dDU71UxgD6oMU10pCjNpwGm';
+
+// 1. Ruta para verificar jugadores de Free Fire
 app.get('/api/check-player', async (req, res) => {
     const playerId = req.query.id;
     if (!playerId) {
@@ -15,15 +17,29 @@ app.get('/api/check-player', async (req, res) => {
     try {
         const response = await fetch(`https://gate.volsever.com/proxy/api/game/free-fire-global?id=${playerId}`, {
             method: 'GET',
-            headers: {
-                'X-API-KEY': 'pk_live_Ef4IYcFG2dDU71UxgD6oMU10pCjNpwGm'
-            }
+            headers: { 'X-API-KEY': API_KEY }
         });
-
         const data = await response.json();
         res.json(data);
     } catch (error) {
-        res.status(500).json({ status: false, message: 'Error al conectar con la API de Volsever' });
+        res.status(500).json({ status: false, message: 'Error al conectar con la API' });
+    }
+});
+
+// 2. Ruta para verificar descuentos / cupones
+app.get('/api/check-discounts', async (req, res) => {
+    try {
+        const response = await fetch('https://gate.volsever.com/api/check-discounts', {
+            method: 'POST',
+            headers: { 
+                'X-API-KEY': API_KEY,
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (error) {
+        res.status(500).json({ status: false, message: 'Error al verificar descuentos' });
     }
 });
 
